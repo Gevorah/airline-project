@@ -11,6 +11,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9faffa724b35b3f4feb669f26ee21c52e8885b4d
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="400.0" fitWidth="594.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
@@ -43,11 +47,14 @@
             <Font name="Tahoma" size="14.0" />
          </font>
       </Label>
+<<<<<<< HEAD
       <RadioButton fx:id="graphList" layoutX="42.0" layoutY="134.0" mnemonicParsing="false" text="Grafo 1">
          <toggleGroup>
             <ToggleGroup fx:id="tipoGraph" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="graphMatrix" layoutX="142.0" layoutY="134.0" mnemonicParsing="false" text="Grafo 2" toggleGroup="$tipoGraph" />
+=======
+>>>>>>> 9faffa724b35b3f4feb669f26ee21c52e8885b4d
    </children>
 </Pane>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package datastructure;
 
 import java.util.*;
@@ -33,3 +34,18 @@ public class ListGraph<E> {
 	}
 	
 }
+=======
+package datastructure;
+
+import java.util.*;
+
+public class ListGraph<E> {
+	private List<Vertex<E>> vertices;
+	public ListGraph() {
+		vertices = new ArrayList<>();
+	}
+	public void addNode(Vertex<E> vertex) {
+		vertices.add(vertex);
+	}
+}
+>>>>>>> 9faffa724b35b3f4feb669f26ee21c52e8885b4d

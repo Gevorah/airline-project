@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package model;
 
 import java.util.Stack;
@@ -98,3 +99,13 @@ public class AirLine {
 		}
 	}
 }
+=======
+package model;
+
+public class AirLine {
+	
+	public String calculateRoute(String departure, String arrival, String criteria) {
+		return "si pasa";
+	}
+}
+>>>>>>> 9faffa724b35b3f4feb669f26ee21c52e8885b4d
