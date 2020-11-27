@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package datastructure;
 
 import java.util.*;
@@ -30,22 +29,18 @@ public class ListGraph<E> {
 				break;
 			}
 		}
-		
+		List<Edge<E>> toList = to.getConnections();
+		for(int i=0;i<toList.size();i++) {
+			Edge<E> edge = fromList.get(i);
+			if(edge.getFrom().equals(to) && edge.getTo().equals(from)) {
+				toList.remove(i);
+				break;
+			}
+		}
+		from.setConnections(fromList);
+		to.setConnections(toList);
 	}
-	
-}
-=======
-package datastructure;
-
-import java.util.*;
-
-public class ListGraph<E> {
-	private List<Vertex<E>> vertices;
-	public ListGraph() {
-		vertices = new ArrayList<>();
-	}
-	public void addNode(Vertex<E> vertex) {
-		vertices.add(vertex);
+	public List<Vertex<E>> getVertices() {
+		return vertices;
 	}
 }
->>>>>>> 9faffa724b35b3f4feb669f26ee21c52e8885b4d

@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 package model;
+ckage model;
 
 import java.util.Stack;
 
@@ -90,7 +90,7 @@ public class AirLine {
 			for(int i=0;i<4;i++){
 				int vx=ux+x[i];
 				int vy=uy+y[i];
-				if(vx>0 && vx<=n && vy>0 && vy<=m && grid[vx][vy]==-1){
+				//if(vx>0 && vx<=n && vy>0 && vy<=m && grid[vx][vy]==-1){
 					grid[vx][vy]=grid[ux][uy]+1;
 					q[pind++]=vx;
 					q[pind++]=vy;
@@ -98,14 +98,4 @@ public class AirLine {
 			}
 		}
 	}
-}
-=======
-package model;
 
-public class AirLine {
-	
-	public String calculateRoute(String departure, String arrival, String criteria) {
-		return "si pasa";
-	}
-}
->>>>>>> 9faffa724b35b3f4feb669f26ee21c52e8885b4d
