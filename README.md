@@ -6,5 +6,4 @@ implemented two types, adjacency list and adjacency matrix. Once
 obtained this information, the program calculates the most efficient route and gives you
 the user the chosen information.
 
-commentary:
-attached to the repository in the docs folder is the explanatory video about the software
+video: https://youtu.be/G-m8ktI43xg
