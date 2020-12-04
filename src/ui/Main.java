@@ -1,5 +1,8 @@
 package ui;
 
+
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +16,7 @@ public class Main extends Application {
 	private AirLineGUI airLineGUI;
 	private static  AirLine airline;
 
-	public Main() {
+	public Main() throws IOException {
 
 		airline= new AirLine();
 		airLineGUI = new AirLineGUI(airline);
@@ -23,10 +26,10 @@ public class Main extends Application {
 	public static void main(String[] args) {
 
 		launch(args);
-		
-		}
 
-	
+	}
+
+
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -39,9 +42,9 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("Main Window");
-		airLineGUI.loadSettinWindow(null);
+		airLineGUI.loadSettingWindow(null);
 		stage.show();
-		
+
 	}
 
 

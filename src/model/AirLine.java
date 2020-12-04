@@ -1,9 +1,24 @@
 package model;
-ckage model;
 
-import java.util.Stack;
+import java.io.*;
+import java.util.*;
+import datastructure.*;
 
 public class AirLine {
+
+	private ListGraph<String> distlg;
+	private MatrixGraph distmg;
+	private ListGraph<String> costlg;
+	private MatrixGraph costmg;
+	private List<String> destinations;
+
+	public AirLine() {
+		distlg = new ListGraph<>();
+		distmg = new MatrixGraph(8);
+		costlg = new ListGraph<>();
+		costmg = new MatrixGraph(8);
+		destinations = new ArrayList<String>();
+	}
 
 	public String calculateRoute(String departure, String arrival, String criteria, String typeGraph) {
 
@@ -12,13 +27,14 @@ public class AirLine {
 		if (typeGraph.equals("Grafo 1")) {
 
 			if (criteria.equals("Speed")) {
+				result = searchbySpeedMatrix(departure, arrival);
 
-				result = searchbyCostMatrix(departure, arrival);
 			}
 
 			else if (criteria.equals("Cost")) {
 
-				result = searchbySpeedMatrix(departure, arrival);
+				result = searchbyCostMatrix(departure, arrival);
+
 			}
 
 		}
@@ -27,75 +43,83 @@ public class AirLine {
 
 			if (criteria.equals("Speed")) {
 
-				result = searchbyCostList(departure, arrival);
+				result = searchbySpeedList(departure, arrival);
 			}
 
 			else if (criteria.equals("Cost")) {
 
-				result = searchbySpeedList(departure, arrival);
+				result = searchbyCostList(departure, arrival);
 			}
 		}
 
 		return result;
 	}
 
-	
 	public String searchbySpeedMatrix(String departure, String arrival) {
-		/*
-		Stack s=new Stack(); 
-		s.push(this.rootNode); 
-		rootNode.; 
-		printNode(rootNode);
-		while(!s.isEmpty()) { 
-			Node n=(Node)s.peek(); 
-			Node child=getUnvisitedChildNode(n); 
-			if(child!=null) { child.visited=true; printNode(child); s.push(child); }
-			else { s.pop(); } } clearNodes(); */
-
-	return"Hola";
+		distmg.search(departure,arrival);
+		distmg.DFS();
+		return distmg.spath();
 
 	}
 
 	public String searchbyCostMatrix(String departure, String arrival) {
-
-		return "como vas";
+		distmg.search(departure,arrival);
+		distmg.DFS();
+		return distmg.spath() + "\n $" + distmg.spath().split(" ").length*25;
 	}
 
 	public String searchbySpeedList(String departure, String arrival) {
-		
-
-	return"Hola";
-
+		distlg.bfs(distlg.search(departure));
+		return distlg.print(distlg.search(departure),distlg.search(arrival));
 	}
 
 	public String searchbyCostList(String departure, String arrival) {
+		costlg.bfs(costlg.search(departure));
+		String str = costlg.print(costlg.search(departure),costlg.search(arrival));
+		return str +"\n $" +str.split(" ").length*25;
+	} 
 
-		return "como vas";
-	}
-
-	static int[][] grid;
-	static int[] q = new int[2000002];
-	static int pind = 0;
-	static int rind = 0;
-	static int[] x = { 0, 0, -1, 1 };
-	static int[] y = { 1, -1, 0, 0 };
-
-	static void bfs(int si, int sj){
-		q[pind++]=si;
-		q[pind++]=sj;
-		grid[si][sj]=0;
-		while(rind<pind){
-			int ux=q[rind++];
-			int uy=q[rind++];
-			for(int i=0;i<4;i++){
-				int vx=ux+x[i];
-				int vy=uy+y[i];
-				//if(vx>0 && vx<=n && vy>0 && vy<=m && grid[vx][vy]==-1){
-					grid[vx][vy]=grid[ux][uy]+1;
-					q[pind++]=vx;
-					q[pind++]=vy;
-				}
+	public void addDestinations(String d) {
+		for (int i = 0; i < destinations.size(); i++) {
+			if (destinations.get(i).equals(d)) {
+				break;
+			} else {
+				destinations.add(d);
 			}
 		}
+
 	}
 
+	public ArrayList<String> getDestinations() {
+		return (ArrayList<String>) destinations;
+	}
+
+	public double calculateCost(double speed) {
+		return 5;
+	}
+
+	public final static String INFO = "data" + File.separator + "info.txt";
+
+	public void init() throws IOException {
+		distmg.initializeMatrix();
+		costmg.initializeMatrix();
+		destinations.add("Cali");
+		destinations.add("Bogota");
+		destinations.add("Medellin");
+		destinations.add("España");
+		destinations.add("Rusia");
+		destinations.add("Suiza");
+		
+		BufferedReader br = new BufferedReader(new FileReader(INFO));
+		String place = null;
+		while ((place = br.readLine()) != null) {
+			String[] tmp = place.split(",");
+			distmg.addEdge(tmp[0], tmp[1], Double.parseDouble(tmp[2]));
+			distlg.addEdge(tmp[0], tmp[1], Double.parseDouble(tmp[2]));
+			double value = 20 + (int) Math.round(Math.random() * 10);
+			costmg.addEdge(tmp[0], tmp[1], Double.parseDouble(tmp[2])*value);
+			costlg.addEdge(tmp[0], tmp[1], Double.parseDouble(tmp[2])*value);
+		}
+		br.close();
+	}
+}
